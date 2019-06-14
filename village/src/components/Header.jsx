@@ -1,9 +1,22 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
+const StyleHeader = styled.header`
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem auto;
+  width: 75%;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+`;
 
 const Header = () => {
   return (
-    <header>
+    <StyleHeader>
       <NavLink
         exact
         to="/"
@@ -24,7 +37,7 @@ const Header = () => {
       >
         New Smurf
       </NavLink>
-    </header>
+    </StyleHeader>
   );
 };
 

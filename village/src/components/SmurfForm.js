@@ -1,12 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+  width: 400px;
+  padding: 35px 50px 50px 50px;
+  background-color: green;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  border-radius: 3px;
+
+  input {
+    margin-bottom: 5px;
+  }
+
+  h1 {
+    color: white;
+  }
+`;
 
 class SmurfForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      age: '',
-      height: ''
+      name: "",
+      age: "",
+      height: ""
     };
   }
 
@@ -15,11 +35,11 @@ class SmurfForm extends Component {
     this.props.create(this.state);
 
     this.setState({
-      name: '',
-      age: '',
-      height: ''
+      name: "",
+      age: "",
+      height: ""
     });
-  }
+  };
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -28,7 +48,8 @@ class SmurfForm extends Component {
   render() {
     return (
       <div className="SmurfForm">
-        <form onSubmit={this.addSmurf}>
+        <StyledForm onSubmit={this.addSmurf}>
+          <h1>Add a new Smurf</h1>
           <input
             onChange={this.handleInputChange}
             placeholder="name"
@@ -48,7 +69,7 @@ class SmurfForm extends Component {
             name="height"
           />
           <button type="submit">Add to the village</button>
-        </form>
+        </StyledForm>
       </div>
     );
   }
