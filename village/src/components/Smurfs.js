@@ -11,10 +11,10 @@ class Smurfs extends Component {
         <Route
           path="/"
           render={() => {
-            return this.props.smurfs.map(smurf => {
+            return this.props.smurfs.map((smurf, index) => {
               return (
-                <Link to={`/smurfs/${smurf.id}`}>
-                  <Smurf smurf={smurf} />
+                <Link key={index} to={`/smurfs/${smurf.id}`}>
+                  <Smurf smurf={smurf} delete={this.props.delete} />
                 </Link>
               );
             });

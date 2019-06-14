@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const StyledSmurf = styled.div`
@@ -24,12 +24,21 @@ const StyledSmurf = styled.div`
     left: 55%;
     top: 20%;
   }
+
+  .delete-button {
+    position: absolute;
+    top: -25px;
+    right: 4px;
+  }
 `;
 
 const Smurf = props => {
-  useEffect(() => {
-    console.log(props);
-  }, []);
+  const onClickDelete = event => {
+    event.preventDefault();
+    console.log("DELETE!");
+    event.stopPropagation();
+    props.delete(props.smurf);
+  };
 
   return (
     <StyledSmurf>
@@ -37,6 +46,12 @@ const Smurf = props => {
         <h3>{props.smurf.name}</h3>
         <strong>{props.smurf.height} tall</strong>
         <p>{props.smurf.age} smurf years old</p>
+        {props.delete ? (
+          <span className="delete-button" onClick={onClickDelete}>
+            Delete
+          </span>
+        ) : null}
+        {props.edit ? <button>Edit</button> : null}
       </div>
     </StyledSmurf>
   );
