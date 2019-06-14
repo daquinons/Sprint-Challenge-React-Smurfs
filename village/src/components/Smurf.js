@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledSmurf = styled.div`
@@ -15,7 +15,7 @@ const StyledSmurf = styled.div`
   border: 1px solid red;
   border-radius: 3px;
   padding: 4px;
-
+  cursor: pointer;
 
   .smurf-text {
     color: white;
@@ -27,12 +27,16 @@ const StyledSmurf = styled.div`
 `;
 
 const Smurf = props => {
+  useEffect(() => {
+    console.log(props);
+  }, []);
+
   return (
     <StyledSmurf>
       <div className="smurf-text">
-        <h3>{props.name}</h3>
-        <strong>{props.height} tall</strong>
-        <p>{props.age} smurf years old</p>
+        <h3>{props.smurf.name}</h3>
+        <strong>{props.smurf.height} tall</strong>
+        <p>{props.smurf.age} smurf years old</p>
       </div>
     </StyledSmurf>
   );

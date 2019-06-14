@@ -6,6 +6,7 @@ import "./App.css";
 import Header from "./components/Header";
 import SmurfForm from "./components/SmurfForm";
 import Smurfs from "./components/Smurfs";
+import Smurf from "./components/Smurf";
 
 const APIURL = "http://localhost:3333/smurfs";
 
@@ -15,6 +16,14 @@ class App extends Component {
     this.state = {
       smurfs: []
     };
+  }
+
+  getSmurfWithId(id) {
+    const smurf = this.state.smurfs.find(smurf => {
+      return smurf.id === Number(id);
+    });
+
+    return smurf;
   }
 
   async componentDidMount() {
@@ -46,8 +55,24 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Route path="/smurf-for" render={() => <SmurfForm create={this.createNewSmurf.bind(this)} />} />
-        <Route exact path="/" render={() => <Smurfs smurfs={this.state.smurfs} />} />        
+        <Route
+          path="/smurf-for"
+          render={() => <SmurfForm create={this.createNewSmurf.bind(this)} />}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => <Smurfs smurfs={this.state.smurfs} />}
+        />
+        <Route
+          path="/smurfs/:id"
+          render={props => (
+            <Smurf
+              {...props}
+              smurf={this.getSmurfWithId(props.match.params.id)}
+            />
+          )}
+        />
       </div>
     );
   }
