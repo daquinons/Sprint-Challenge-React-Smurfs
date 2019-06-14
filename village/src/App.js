@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
+import Header from "./components/Header";
 import SmurfForm from "./components/SmurfForm";
 import Smurfs from "./components/Smurfs";
 
@@ -44,6 +45,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <Route path="/smurf-for" render={() => <SmurfForm create={this.createNewSmurf.bind(this)} />} />
         <Route exact path="/" render={() => <Smurfs smurfs={this.state.smurfs} />} />        
       </div>
