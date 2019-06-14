@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm create={this.createNewSmurf.bind(this)} />
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
