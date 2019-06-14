@@ -42,6 +42,7 @@ class App extends Component {
 
   async createNewSmurf(smurf) {
     try {
+      smurf.age = Number(smurf.age);
       const dataResponse = await axios.post(APIURL, smurf);
       this.setState({ smurfs: dataResponse.data });
     } catch (error) {

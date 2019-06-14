@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import pt from "prop-types";
 
 const StyledSmurf = styled.div`
   position: relative;
@@ -55,6 +56,14 @@ const Smurf = props => {
       </div>
     </StyledSmurf>
   );
+};
+
+Smurf.propTypes = {
+  smurf: pt.shape({
+    name: pt.string.isRequired,
+    age: pt.number.isRequired,
+    height: pt.string.isRequired
+  })
 };
 
 Smurf.defaultProps = {
