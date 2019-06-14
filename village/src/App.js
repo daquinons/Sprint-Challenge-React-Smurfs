@@ -57,6 +57,20 @@ class App extends Component {
       console.log(error);
     }
   }
+
+  async editSmurf(smurf) {
+    try {
+      const dataResponse = await axios.put(`${APIURL}/${smurf.id}`, {
+        name: smurf.name,
+        age: smurf.age,
+        height: smurf.height
+      });
+      this.setState( { smurfs: dataResponse.data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
@@ -71,14 +85,20 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={() => <Smurfs smurfs={this.state.smurfs} delete={this.deleteSmurf.bind(this)} />}
+          render={() => (
+            <Smurfs
+              smurfs={this.state.smurfs}
+              delete={this.deleteSmurf.bind(this)}
+            />
+          )}
         />
         <Route
           path="/smurfs/:id"
           render={props => (
             <Smurf
               {...props}
-              smurf={this.getSmurfWithId(props.match.params.id)} edit
+              smurf={this.getSmurfWithId(props.match.params.id)}
+              edit
             />
           )}
         />
